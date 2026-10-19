@@ -1,0 +1,1478 @@
+/*
+ * Author       : asifa.h.2024.aiml_rajalak
+ * Generated on : 20-Oct-2026 00:14:32
+ * Version      : 1.0
+ */
+ application "et Care & Veterinary Appointment Management System"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+
+ 	forms
+	{
+		form Appointments
+		{
+			success message = "Appointment Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Appointment_ID
+			(
+    			type = autonumber
+				displayname = "Appointment ID"
+				start index = 20
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Pet
+			(
+				type = picklist	
+				values  = Pets.ID
+    			displayformat = [" " + Pet_Name.prefix + " " + Pet_Name.first_name + " " + Pet_Name.last_name + " " + Pet_Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Veterinarians
+			(
+				type = picklist	
+				values  = Veterinarians.ID
+    			displayformat = [" " + Doctor_Name.prefix + " " + Doctor_Name.first_name + " " + Doctor_Name.last_name + " " + Doctor_Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Appointment_Date
+			(
+    			type = date
+				displayname = "Appointment Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Appointment_Time
+			(
+    			type = datetime
+				displayname = "Appointment Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Reason
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				maxchar = 100
+				values = {"Pending","Confirmed","Completed","Cancelled"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notes
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Medical_Records
+		{
+			displayname = "Medical Records"
+			success message = "Medical Record Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Record_ID
+			(
+    			type = autonumber
+				displayname = "Record ID"
+				start index = 15
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Appointment
+			(
+				type = picklist	
+				values  = Appointments.ID
+    			displayformat = [Appointment_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Diagnosis
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Treatment
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Prescription
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Follow_Up_Date
+			(
+    			type = date
+				displayname = "Follow Up Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Veterna
+			(
+    			type = textarea
+				displayname = "Veterinarian Notes"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Pet_Owners
+		{
+			displayname = "Pet Owners"
+			success message = "Pet Owner Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Owner_Name
+			(
+    			type = name
+				displayname = "Owner Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Owner_ID
+			(
+    			type = autonumber
+				displayname = "Owner ID"
+				start index = 28
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Email
+			(
+    			type = email
+				maxchar = 80
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Date_field
+			(
+    			type = datetime
+				displayname = "Date"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Pets
+		{
+			success message = "Pet Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Pet_ID
+			(
+    			type = autonumber
+				displayname = "Pet ID"
+				start index = 6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Pet_Name
+			(
+    			type = name
+				displayname = "Pet Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Owners
+			(
+				type = picklist	
+				values  = Pet_Owners.ID
+    			displayformat = [" " + Owner_Name.prefix + " " + Owner_Name.first_name + " " + Owner_Name.last_name + " " + Owner_Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Species
+			(
+				type = picklist
+				maxchar = 100
+				values = {"Cat","Dog"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Breed
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Date_of_Birth
+			(
+    			type = date
+				displayname = "Date of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Gender
+			(
+				type = picklist
+				maxchar = 100
+				values = {"Male","Female"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Weight
+			(
+				type = decimal
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Allergies
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Vaccination_Status
+			(
+    			type = textarea
+				displayname = "Vaccination Status (Mention the no.of vaccines and the details of it)"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Veterinarians
+		{
+			success message = "Veterinarian Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Doctor_ID
+			(
+    			type = autonumber
+				displayname = "Doctor ID"
+				start index = 10
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Doctor_Name
+			(
+    			type = name
+				displayname = "Doctor Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Specialization
+			(
+				type = picklist
+				maxchar = 100
+				values = {"General Veterinary Care","Surgery","Dentistry","Dermatology"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Email
+			(
+    			type = email
+				maxchar = 80
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Available_Days
+			(
+				type = list	
+				displayname = "Available Days"
+				values = {"Choice 1","Choice 2","Choice 3"}
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Consultation_Fee
+			(
+				displayname = "Consultation Fee"
+				type = INR
+				format = commadotindian
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	reports
+	{
+		default list All_Pet_Owners
+		{
+			displayName = "All Pet Owners"
+			show all rows from Pet_Owners    
+			(
+				Owner_Name  as "Owner Name"
+				Phone
+				Email
+				Address 
+	 			(
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Owner_ID as "Owner ID"
+				Date_field as "Date"
+			)
+		}
+		default list All_Veterinarians
+		{
+			displayName = "All Veterinarians"
+			show all rows from Veterinarians    
+			(
+				Doctor_ID as "Doctor ID"
+				Doctor_Name  as "Doctor Name"
+				Specialization
+				Phone_Number as "Phone"
+				(
+					displayformat = plainnumber 
+				)
+				Email
+				Available_Days as "Available Days"
+				Consultation_Fee as "Consultation Fee"
+			)
+		}
+		default list All_Pets
+		{
+			displayName = "All Pets"
+			show all rows from Pets    
+			(
+				Pet_ID as "Pet ID"
+				Pet_Name  as "Pet Name"
+				Owners
+				Species
+				Breed
+				Date_of_Birth as "Date of Birth"
+				Gender
+				Weight
+				Allergies
+				Vaccination_Status as "Vaccination Status (Mention the no.of vaccines and the details of it)"
+			)
+		}
+		default list All_Appointments
+		{
+			displayName = "All Appointments"
+			show all rows from Appointments    
+			(
+				Appointment_ID as "Appointment ID"
+				Pet
+				Veterinarians
+				Appointment_Date as "Appointment Date"
+				Appointment_Time as "Appointment Time"
+				Reason
+				Status
+				Notes
+			)
+		}
+		default list All_Medical_Records
+		{
+			displayName = "All Medical Records"
+			show all rows from Medical_Records    
+			(
+				Record_ID as "Record ID"
+				Appointment
+				Diagnosis
+				Treatment
+				Prescription
+				Follow_Up_Date as "Follow Up Date"
+				Veterna as "Veterinarian Notes"
+			)
+		}
+	}
+
+
+
+
+		workflow
+		{
+		form
+		{
+			Notify_Pet_Owner as "Notify Pet Owner"
+			{
+				type =  form
+				form = Appointments
+
+				record event = on add
+
+				on validate
+				{
+				}
+
+			}
+		}
+
+		schedule
+		{
+			Appointment_Remainder as "Appointment Remainder"
+			{
+				type =  schedule
+				form = Appointments
+					status = inactive
+				start = before 1 days from Appointment_Date at "00:09:08"
+				time zone = "Asia/Kolkata"
+				on start
+				{
+				}
+			}
+		}
+
+
+
+
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Developer"
+			{
+				name = "Developer"
+				type = Developer
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Developer Profile\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		icon
+		{
+			text = "ECV"
+			background color = "theme"
+			foreground color = "#ffffff"
+		}
+	}
+
+	web
+	{
+		forms
+		{
+			form Appointments
+			{
+				label placement = left
+			}
+			form Medical_Records
+			{
+				label placement = left
+			}
+			form Pet_Owners
+			{
+				label placement = left
+			}
+			form Pets
+			{
+				label placement = left
+			}
+			form Veterinarians
+			{
+				label placement = left
+			}
+		}
+		reports
+		{
+			report All_Pet_Owners
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Owner_Name as "Owner Name"
+								Phone
+								Email
+								Address
+								Owner_ID as "Owner ID"
+								Date_field as "Date"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Owner_Name as "Owner Name"
+								Phone
+								Email
+								Address
+								Owner_ID as "Owner ID"
+								Date_field as "Date"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report All_Veterinarians
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Doctor_ID as "Doctor ID"
+								Doctor_Name as "Doctor Name"
+								Specialization
+								Phone_Number as "Phone"
+								Email
+								Available_Days as "Available Days"
+								Consultation_Fee as "Consultation Fee"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Doctor_ID as "Doctor ID"
+								Doctor_Name as "Doctor Name"
+								Specialization
+								Phone_Number as "Phone"
+								Email
+								Available_Days as "Available Days"
+								Consultation_Fee as "Consultation Fee"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report All_Pets
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Pet_ID as "Pet ID"
+								Pet_Name as "Pet Name"
+								Owners
+								Species
+								Breed
+								Date_of_Birth as "Date of Birth"
+								Gender
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Pet_ID as "Pet ID"
+								Pet_Name as "Pet Name"
+								Owners
+								Species
+								Breed
+								Date_of_Birth as "Date of Birth"
+								Gender
+								Weight
+								Allergies
+								Vaccination_Status as "Vaccination Status (Mention the no.of vaccines and the details of it)"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report All_Appointments
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Appointment_ID as "Appointment ID"
+								Pet
+								Veterinarians
+								Appointment_Date as "Appointment Date"
+								Appointment_Time as "Appointment Time"
+								Reason
+								Status
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Appointment_ID as "Appointment ID"
+								Pet
+								Veterinarians
+								Appointment_Date as "Appointment Date"
+								Appointment_Time as "Appointment Time"
+								Reason
+								Status
+								Notes
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report All_Medical_Records
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Record_ID as "Record ID"
+								Appointment
+								Diagnosis
+								Treatment
+								Prescription
+								Follow_Up_Date as "Follow Up Date"
+								Veterna as "Veterinarian Notes"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Record_ID as "Record ID"
+								Appointment
+								Diagnosis
+								Treatment
+								Prescription
+								Follow_Up_Date as "Follow Up Date"
+								Veterna as "Veterinarian Notes"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+		}
+		menu
+		{
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section Pet_Owners
+				{
+					displayname = "Pet Owners"
+					icon = "holidays-cat"
+					form  Pet_Owners
+					{
+						icon = "holidays-cat"
+					}
+					report All_Pet_Owners
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section ZC_App_Preferences
+				{
+					displayname = "App Preferences"
+					icon = "design-app"
+					systemcomponent
+					{
+						type = localization
+						displayname = "Language Selection"
+						icon = "education-language"
+					}
+					systemcomponent
+					{
+						type = connection
+						displayname = "Integrations"
+						icon = "tech-2-connection"
+					}
+				}
+				section ZC_Approvals
+				{
+					displayname = "Approvals"
+					icon = "ui-2-hourglass"
+					systemcomponent
+					{
+						type = approval
+						approval status = pending
+						displayname = "Pending Tasks"
+						icon = "ui-2-hourglass"
+					}
+					systemcomponent
+					{
+						type = approval
+						approval status = completed
+						displayname = "Completed Tasks"
+						icon = "design-todo"
+					}
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+				section Veterinarians
+				{
+					displayname = "Veterinarians"
+					icon = "tech-desktop"
+					form  Veterinarians
+					{
+						icon = "tech-desktop"
+					}
+					report All_Veterinarians
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section Pets
+				{
+					displayname = "Pets"
+					icon = "holidays-cat"
+					form  Pets
+					{
+						icon = "holidays-cat"
+					}
+					report All_Pets
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section Appointments
+				{
+					displayname = "Appointments"
+					icon = "ui-1-calendar-grid-61"
+					form  Appointments
+					{
+						icon = "ui-1-calendar-grid-61"
+					}
+					report All_Appointments
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section Medical_Records
+				{
+					displayname = "Medical Records"
+					icon = "health-notebook"
+					form  Medical_Records
+					{
+						icon = "health-notebook"
+					}
+					report All_Medical_Records
+					{
+						icon = "tech-desktop"
+					}
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = outline
+				}
+			}
+		}
+		customize
+		{
+			layout
+			{
+				theme = "theme_8"
+			}
+			font = "lato"
+			color options
+			{
+				color = "11"
+			}
+			logo
+			{
+				preference = "app_icon"
+				placement = "left"
+			}
+		}
+	}
+	phone
+	{
+		forms
+		{
+			form Appointments
+			{
+				label placement = auto
+			}
+			form Medical_Records
+			{
+				label placement = auto
+			}
+			form Pet_Owners
+			{
+				label placement = auto
+			}
+			form Pets
+			{
+				label placement = auto
+			}
+			form Veterinarians
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = twocolumn
+			font = "default"
+			style = "3"
+			color options
+			{
+				color = chryslerpurple
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	tablet
+	{
+		forms
+		{
+			form Appointments
+			{
+				label placement = auto
+			}
+			form Medical_Records
+			{
+				label placement = auto
+			}
+			form Pet_Owners
+			{
+				label placement = auto
+			}
+			form Pets
+			{
+				label placement = auto
+			}
+			form Veterinarians
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "3"
+			color options
+			{
+				color = amethyst
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	
+}
